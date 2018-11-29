@@ -24,10 +24,19 @@ describe('Address Book', function() {
 
 //Criando nova suíte de Teste
 describe('Async Address Book', function() {
-  it('pegará novos contatos', function() {
-    var addressBook = new AddressBook();
+  var addressBook = new AddressBook();
+
+  //Criando o beforeEach consigo executar minha função assíncrona e dizer quando
+  //a mesma terminou. Logo não dando erro no meu spec
+  beforeEach(function(done) {
     //Função assíncrona
-    addressBook.getInitialContacts();
-    expect(addressBook.initialComplete).toBe(true)
+    addressBook.getInitialContacts(function() {
+      done();
+    });
+  });
+
+  it('pegará novos contatos', function(done) {
+    expect(addressBook.initialComplete).toBe(true);
+    done();
   });
 });
