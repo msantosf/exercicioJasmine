@@ -21,3 +21,13 @@ describe('Address Book', function() {
     expect(addressBook.getContact(0)).not.toBeDefined();
   });
 });
+
+//Criando nova suíte de Teste
+describe('Async Address Book', function() {
+  it('pegará novos contatos', function() {
+    var addressBook = new AddressBook();
+    //Função assíncrona
+    addressBook.getInitialContacts();
+    expect(addressBook.initialComplete).toBe(true)
+  });
+});
